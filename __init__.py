@@ -90,3 +90,23 @@ while True:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 snake.changeDirTo('RIGHT')
+            if event.key == pygame.K_UP:
+                snake.changeDirTo('UP')
+            if event.key == pygame.K_DOWN:
+                snake.changeDirTo('DOWN')
+            if event.key == pygame.K_LEFT:
+                snake.changeDirTo('LEFT')
+    foodPos = foodSpawner.spawnFood()
+    if(snake.move(foodPos) == 1):
+        score += 1
+        foodSpawner.setFoodOnScreen(False)
+
+    window.fill(pygame.Color(0, 0, 0))
+    for pos in snake.getBody():
+        pygame.draw.rect(window, pygame.Color(0, 225, 0), pygame.Rect(pos[0], pos[1], 10, 10))
+
+    #Draw food
+    pygame.draw.rect(window, pygame.Color(255, 0, 0), pygame.Rect(foodPos[0], foodPos[1], 10, 10))
+
+    if(snake.checkCollision() == 1):
+        gameOver()
