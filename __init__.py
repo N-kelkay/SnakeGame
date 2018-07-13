@@ -16,19 +16,19 @@ class Snake():
         if dir == "LEFT" and not self.direction == "RIGHT":
             self.direction = "LEFT"
         if dir == "UP" and not self.direction == "DOWN":
-            self.dirction = "UP"
-        if dir == "DOWN" and not self.dirction == "UP":
-            self.dirction = "DOWN"
+            self.direction = "UP"
+        if dir == "DOWN" and not self.direction == "UP":
+            self.direction = "DOWN"
 
     def move(self, foodPos):
         if self.direction == "RIGHT":
-            self.position[0] += 10
+            self.position[0] += 1
         if self.direction == "LEFT":
-            self.position[0] -= 10
+            self.position[0] -= 1
         if self.direction == "UP":
-            self.position[0] -= 10
+            self.position[0] -= 1
         if self.direction == "DOWN":
-            self.position[0] += 10
+            self.position[0] += 1
 
 
         self.body.insert(0, list(self.position))
@@ -114,3 +114,5 @@ while True:
     pygame.display.set_caption("Snake Game | Score : " + str(score))
     pygame.display.flip()
     fps.tick(24)
+
+delay = input("press enter")
