@@ -21,18 +21,18 @@ class Snake():
             self.dirction = "DOWN"
 
     def move(self, foodPos):
-        if slef.direction == "RIGHT":
+        if self.direction == "RIGHT":
             self.position[0] += 10
-        if slef.direction == "LEFT":
+        if self.direction == "LEFT":
             self.position[0] -= 10
-        if slef.direction == "UP":
+        if self.direction == "UP":
+            self.position[0] -= 10
+        if self.direction == "DOWN":
             self.position[0] += 10
-        if slef.direction == "DOWN":
-            self.position[0] -= 10
 
 
-        self.body.insert(0, self.position)
-        if slef.position == foodPos:
+        self.body.insert(0, list(self.position))
+        if self.position == foodPos:
             return 1
         else:
             self.body.pop()
@@ -70,7 +70,7 @@ class FoodSpawer():
         self.isFoodOnScreen = b
 
 window = pygame.display.set_mode((500, 500))
-pygame.display.set_caption("Wow Snake")
+pygame.display.set_caption("Snake Game")
 fps = pygame.time.Clock()
 
 score = 0
@@ -110,3 +110,7 @@ while True:
 
     if(snake.checkCollision() == 1):
         gameOver()
+
+    pygame.display.set_caption("Snake Game | Score : " + str(score))
+    pygame.display.flip()
+    fps.tick(24)
