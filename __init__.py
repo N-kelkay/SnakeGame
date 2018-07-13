@@ -53,3 +53,40 @@ class Snake():
 
     def getBody(self):
         return self.body
+
+class FoodSpawer():
+    def __init__(self):
+        self.position = [random.randrange(1, 50) * 10, random.randrange(1, 50) * 10]
+        self.isFoodOnScreen = True
+
+
+    def spawnFood(self):
+        if self.isFoodOnScreen == False:
+            self.position = [random.randrange(1, 50) * 10, random.randrange(1, 50) * 10]
+            self.isFoodOnScreen = True
+        return self.position
+
+    def setFoodOnScreen(self, b):
+        self.isFoodOnScreen = b
+
+window = pygame.display.set_mode((500, 500))
+pygame.display.set_caption("Wow Snake")
+fps = pygame.time.Clock()
+
+score = 0
+
+snake = Snake()
+
+foodSpawner = FoodSpawer()
+
+def gameOver():
+    pygame.quit()
+    sys.exit()
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            gameOver()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                snake.changeDirTo('RIGHT')
