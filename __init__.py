@@ -29,4 +29,27 @@ class Snake():
             self.position[0] += 10
         if slef.direction == "DOWN":
             self.position[0] -= 10
-        
+
+
+        self.body.insert(0, self.position)
+        if slef.position == foodPos:
+            return 1
+        else:
+            self.body.pop()
+            return 0
+
+    def checkCollision(self):
+        if self.position[0] > 490 or self.position[0] < 0 :
+            return 1
+        elif self.position[1] > 490 or self.position[1] < 0:
+            return 1
+        for bodyPart in self.body[1:]:
+            if self.position == bodyPart:
+                return 1
+        return 0
+
+    def getHeadPos(self):
+        return self.position
+
+    def getBody(self):
+        return self.body
